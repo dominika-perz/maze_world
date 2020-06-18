@@ -1,25 +1,14 @@
-from helper import Legend
+from helper import *
 
 
-class MazeGenerator:
-    def __init__(self, size):
-        self.size = size
+def simple_generator_5x5():
+    maze = [[Legend.START, Legend.WALL, Legend.WALL, Legend.CORRIDOR, Legend.CORRIDOR],
+            [Legend.CORRIDOR, Legend.CORRIDOR, Legend.WALL, Legend.CORRIDOR, Legend.WALL],
+            [Legend.CORRIDOR, Legend.WALL, Legend.WALL, Legend.CORRIDOR, Legend.WALL],
+            [Legend.CORRIDOR, Legend.WALL, Legend.CORRIDOR, Legend.CORRIDOR, Legend.CORRIDOR],
+            [Legend.CORRIDOR, Legend.CORRIDOR, Legend.CORRIDOR, Legend.WALL, Legend.END],
+            ]
 
-    def generate(self):
-        pass
+    return Position(0, 0), Position(4, 4), maze
 
-
-class SimpleGenerator(MazeGenerator):
-    def __init__(self):
-        self.size = 5
-
-    @staticmethod
-    def generator(self):
-        maze = [[Legend.START, Legend.WALL, Legend.WALL, Legend.CORRIDOR, Legend.CORRIDOR],
-                [Legend.CORRIDOR, Legend.CORRIDOR, Legend.WALL, Legend.CORRIDOR, Legend.WALL],
-                [Legend.CORRIDOR, Legend.WALL, Legend.WALL, Legend.CORRIDOR, Legend.WALL],
-                [Legend.CORRIDOR, Legend.WALL, Legend.CORRIDOR, Legend.CORRIDOR, Legend.CORRIDOR],
-                [Legend.CORRIDOR, Legend.CORRIDOR, Legend.CORRIDOR, Legend.WALL, Legend.END],
-                ]
-        return maze
 
