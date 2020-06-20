@@ -2,20 +2,22 @@ from helper import *
 
 
 class Maze:
-    def __init__(self, size, generator):
-        self.width = size
-        self.height = size
+    def __init__(self, generator, width=-1, height=-1):
         self.start_pos, self.end_pos, self.maze = generator()
+        self.width = width if width > 0 else len(self.maze)
+        self.height = height if height > 0 else len(self.maze[0])
 
     def __str__(self):
         maze_str = ''
-        for rows in self.maze:
-            maze_str += str(rows)
+        for row in self.maze:
+            for cell in row:
+                maze_str += cell
+                maze_str += ' '
             maze_str += '\n'
         return maze_str
 
     def __repr__(self):
-        return f'{self.__class__}({self.width}x{self.height})'
+        return f'{self.__class__.__name__}({self.width}, {self.height})'
 
     def __getitem__(self, key):
         return self.maze[key.x][key.y]

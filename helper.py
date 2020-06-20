@@ -20,7 +20,10 @@ class Position:
         return Position(x, y)
 
     def __str__(self):
-        return f'({self.x}, {self.y})'
+        return f'P({self.x}, {self.y})'
+
+    def __repr__(self):
+        return f'Position({self.x}, {self.y})'
 
     def __hash__(self):
         return hash(self.x+self.y)
@@ -35,17 +38,4 @@ MOVES = {'UP': Position(-1, 0),
          'RIGHT': Position(0, 1),
          'DOWN': Position(1, 0),
          'LEFT': Position(0, -1)}
-
-
-# class State:
-#     def __init__(self, initial_pos):
-#         self.position = initial_pos
-#         self.maze = [Legend.START]
-#
-#     def __str__(self):
-#         state_str = ''
-#         for rows in self.maze:
-#             state_str += str(rows)
-#             state_str += '\n'
-#         return state_str
 
