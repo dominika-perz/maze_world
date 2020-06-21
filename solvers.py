@@ -48,3 +48,6 @@ class SimpleSolver(Solver):
             if (self._position + move) not in self._visited:
                 self._to_go.append(self._position + move)
 
+    def reset(self):
+        self.__init__()
+

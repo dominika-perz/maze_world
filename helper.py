@@ -1,12 +1,18 @@
-from collections import namedtuple
-
-
 class Legend:
     WALL = 'x'
     START = '>'
     END = '!'
     CORRIDOR = '_'
     AGENT = 'o'
+    VISITED = '-'
+
+    color = {WALL: "#444444",
+             START: "#c76dc3",
+             END: "#983a94",
+             CORRIDOR: "#ececec",
+             AGENT: "#84d6e0",
+             VISITED: "#f2def1"
+             }
 
 
 class Position:
