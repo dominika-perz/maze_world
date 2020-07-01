@@ -1,3 +1,6 @@
+from heapq import *
+
+
 class Legend:
     WALL = 'x'
     START = '>'
@@ -39,9 +42,53 @@ class Position:
         eq_y = self.y == other.y
         return eq_x and eq_y
 
+    def __lt__(self, other):
+        return self.x + self.y < self.y == other.y
+
+    def __le__(self, other):
+        return self.x + self.y <= self.y == other.y
+
+    def __gt__(self, other):
+        return self.x + self.y > self.y == other.y
+
+    def __ge__(self, other):
+        return self.x + self.y >= self.y == other.y
+
 
 MOVES = {'UP': Position(-1, 0),
          'RIGHT': Position(0, 1),
          'DOWN': Position(1, 0),
          'LEFT': Position(0, -1)}
+
+
+class PriorityQueue:
+    def __init__(self):
+        self._min_heap = []
+        heapify(self._min_heap)
+        self._dict = {}
+
+    def pop(self):
+        priority, item = heappop(self._min_heap)
+        del self._dict[item]
+        return priority, item
+
+    def push(self, priority, item):
+        if item in self._dict:
+            old_priority = self._dict[item]
+            if old_priority > priority:
+                for idx, items in enumerate(self._min_heap):
+                    p_, i_ = items
+                    if i_ == item and p_ == old_priority:
+                        del self._min_heap[idx]
+                        break
+                heapify(self._min_heap)
+                heappush(self._min_heap, (priority, item))
+                self._dict[item] = priority
+        else:
+            heappush(self._min_heap, (priority, item))
+            self._dict[item] = priority
+
+    def __len__(self):
+        return len(self._min_heap)
+
 

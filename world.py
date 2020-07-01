@@ -42,21 +42,24 @@ class World:
                 print('This maze is unsolvable!')
                 return False
             new_pos = self._maze.start_pos + shift
-            print(f'New position: {new_pos}')
+            # print(f'New position: {new_pos}')
             if not self._maze.is_wall(new_pos):
-                time.sleep(.1)
-                self._solver.update()
-                if labels:
-                    prev_label = labels[self._position.x][self._position.y]
-                    if self._position== self._maze.start_pos:
-                        prev_label.config(bg=Legend.color[Legend.START])
-                    else:
-                        prev_label.config(bg=Legend.color[Legend.VISITED])
-                    labels[new_pos.x][new_pos.y].config(bg=Legend.color[Legend.AGENT])
-                self._position = new_pos
-                self.show_world()
+                time.sleep(.3)
+                self.update(new_pos, labels)
+                # self.show_world()
         print('Maze solved. Congrats!')
         return True
+
+    def update(self, new_pos, labels=None):
+        self._solver.update()
+        if labels:
+            prev_label = labels[self._position.x][self._position.y]
+            if self._position == self._maze.start_pos:
+                prev_label.config(bg=Legend.color[Legend.START])
+            else:
+                prev_label.config(bg=Legend.color[Legend.VISITED])
+            labels[new_pos.x][new_pos.y].config(bg=Legend.color[Legend.AGENT])
+        self._position = new_pos
 
     @property
     def rows(self):
